@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>★출시기념★ 얼짱캠 1년 무료 이벤트</title>
 <meta property="og:title" content="얼짱캠 출시기념 — 프리미엄 1년 무료 이벤트">
-<meta property="og:description" content="얼짱캠 쓰는 모습을 SNS에 자랑하면 1년 프리미엄이 공짜! 캡처 2장 내면 10초 자동 심사 ⚡">
+<meta property="og:description" content="얼짱캠 자랑하고 캡처 2장 내면 프리미엄 1년이 공짜!">
 <meta property="og:image" content="https://haduri-contest-408869824051-kr.s3.ap-northeast-2.amazonaws.com/static/event/hero-cam.png">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -78,7 +78,6 @@
     <div class="hero">
       <img class="cam" src="https://haduri-contest-408869824051-kr.s3.ap-northeast-2.amazonaws.com/static/event/hero-cam.png" alt="Y2K 디지캠">
       <h1>앨범 캡처 + SNS 인증<br>= 프리미엄 1년 무료!</h1>
-      <p class="sub">얼짱캠 쓰는 모습을 SNS에 자랑해주시면<br><b>워터마크 제거 · 고화질 · 광고 없음</b>을 1년 통째로 드려요</p>
       <div class="left-pill">⚡ 선착순 <span id="left">500</span>명 남음 <span class="blink">_</span></div>
     </div>
 
@@ -86,17 +85,18 @@
       <h2>참여 방법 (1분 컷)</h2>
       <div class="step">
         <img src="https://haduri-contest-408869824051-kr.s3.ap-northeast-2.amazonaws.com/static/event/icon-shoot.png" alt="">
-        <p><span class="n">STEP 1</span><br>얼짱캠으로 뽀샤시 셀카를 찍고, 사진이 보이는 <b>앱 화면을 캡처</b></p>
+        <p><span class="n">STEP 1</span><br>셀카 찍고 <b>앱 화면 캡처</b></p>
       </div>
       <div class="step">
         <img src="https://haduri-contest-408869824051-kr.s3.ap-northeast-2.amazonaws.com/static/event/icon-post.png" alt="">
-        <p><span class="n">STEP 2</span><br>그 사진을 인스타·틱톡 등 SNS에 올리고 <b>게시물 화면을 캡처</b> — 캡션에 필수 해시태그 3개!</p>
+        <p><span class="n">STEP 2</span><br>SNS에 올리고 <b>게시물 캡처</b></p>
       </div>
-      <div class="tags" id="tags">#얼짱캠 #ulzzangcam #얼짱챌린지</div>
+      <div class="tags"><span id="tags">#ulzzangcam</span> <span style="background:#e7318a;color:#fff;font-size:10px;border-radius:8px;padding:1px 7px;vertical-align:3px;">필수</span><br>
+        <span style="font-size:11.5px;color:#b16a92;">추천 <span id="sugtags">#얼짱캠 #얼짱챌린지</span></span></div>
       <button class="copy-btn" onclick="copyTags()">📋 해시태그 복사</button>
       <div class="step">
         <img src="https://haduri-contest-408869824051-kr.s3.ap-northeast-2.amazonaws.com/static/event/icon-gift.png" alt="">
-        <p><span class="n">STEP 3</span><br>앱의 <b>파일 메뉴 → 출시기념 1년 무료 이벤트</b>에서 캡처 2장을 제출하면 끝!<br>자동 심사는 보통 <b>10초</b> ⚡ 통과 즉시 적용돼요</p>
+        <p><span class="n">STEP 3</span><br>앱 <b>파일 메뉴 → 출시기념 이벤트</b>에서 캡처 2장 제출<br>→ <b>1~2일 내 1년 지급!</b></p>
       </div>
     </div>
 
@@ -113,12 +113,11 @@
 
     <p class="note">
       <b>유의사항</b><br>
-      · 본인이 얼짱캠으로 찍은 사진과 본인 SNS 게시물만 인정돼요<br>
-      · 필수 해시태그 3개가 캡션에 모두 보여야 승인돼요<br>
-      · 자동 심사로 즉시 지급되며, 캡처 재사용·도용은 자동으로 걸러져요<br>
-      · 기기당 1회 당첨 · 선착순 소진 시 조기 종료될 수 있어요<br>
-      · 제출된 캡처는 심사 목적 외에는 사용하지 않아요<br>
-      · 혜택은 앱 내 프리미엄 기능 이용권이며 현금으로 바꿀 수 없어요
+      · 본인 사진 · 본인 SNS 게시물만 인정 · 기기당 1회<br>
+      · 필수 해시태그가 캡션에 보여야 승인돼요<br>
+      · 심사 후 1~2일 이내 지급되며 앱에서 자동 적용돼요<br>
+      · 제출 캡처는 심사·부정 참여 방지 목적으로 보관돼요<br>
+      · 선착순 소진 시 조기 종료 · 현금 전환 불가
     </p>
   </div>
 </div>
@@ -127,10 +126,12 @@
     .then(r => r.json())
     .then(d => {
       if (typeof d.left === 'number') document.getElementById('left').textContent = d.left;
-      if (d.hashtags) document.getElementById('tags').textContent = d.hashtags.join(' ');
+      if (d.required) document.getElementById('tags').textContent = d.required.join(' ');
+      if (d.hashtags) document.getElementById('sugtags').textContent =
+        d.hashtags.filter(t => !(d.required || []).includes(t)).join(' ');
     }).catch(() => {});
   function copyTags(){
-    const t = document.getElementById('tags').textContent;
+    const t = document.getElementById('tags').textContent + ' ' + document.getElementById('sugtags').textContent;
     (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(
       () => alert('해시태그 복사 완료! SNS 캡션에 붙여넣으세요'),
       () => prompt('아래 해시태그를 복사하세요', t));
